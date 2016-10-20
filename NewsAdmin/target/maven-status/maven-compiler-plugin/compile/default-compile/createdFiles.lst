@@ -1,9 +1,0 @@
-com\epam\newsmanagement\controller\EntranceController.class
-com\epam\newsmanagement\controller\MainController.class
-com\epam\newsmanagement\controller\MainController$1.class
-com\epam\newsmanagement\controller\ArticleController.class
-com\epam\newsmanagement\controller\AuthorController.class
-com\epam\newsmanagement\controller\CommentController.class
-com\epam\newsmanagement\controller\TagController.class
-com\epam\newsmanagement\util\SortMode.class
-com\epam\newsmanagement\util\Filter.class
