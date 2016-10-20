@@ -2,6 +2,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 <body>
 <tiles:insertAttribute name="header"/>
 <div class="container">
-    <sec:authorize access="isAuthenticated()">
+    <sec:authorize access="isAuthenticated() and hasRole('ROLE_ADMIN')">
         <tiles:insertAttribute name="menu"/>
     </sec:authorize>
     <tiles:insertAttribute name="content"/>
