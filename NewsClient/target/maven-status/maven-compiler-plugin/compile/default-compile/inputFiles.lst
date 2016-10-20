@@ -1,0 +1,11 @@
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\Command.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\AddCommentCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\controller\ClientController.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\SetLocaleCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\ArticlePageCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\LoginCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\RegistryCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\util\SortMode.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\LogoutCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\command\EmptyCommand.java
+D:\NewsManagement\NewsClient\src\main\java\com\epam\newsmanagement\util\Filter.java

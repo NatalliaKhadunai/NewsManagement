@@ -1,0 +1,19 @@
+.error {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+}
+
+.error p {
+    color: red;
+}
+
+.login-form {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.login-form .login-button {
+    text-align: right;
+}

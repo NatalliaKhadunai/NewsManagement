@@ -1,0 +1,12 @@
+com\epam\newsmanagement\command\Command.class
+com\epam\newsmanagement\command\EmptyCommand$1.class
+com\epam\newsmanagement\command\EmptyCommand.class
+com\epam\newsmanagement\command\SetLocaleCommand.class
+com\epam\newsmanagement\command\RegistryCommand.class
+com\epam\newsmanagement\util\SortMode.class
+com\epam\newsmanagement\command\LoginCommand.class
+com\epam\newsmanagement\command\AddCommentCommand.class
+com\epam\newsmanagement\controller\ClientController.class
+com\epam\newsmanagement\command\ArticlePageCommand.class
+com\epam\newsmanagement\util\Filter.class
+com\epam\newsmanagement\command\LogoutCommand.class

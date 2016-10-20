@@ -1,0 +1,19 @@
+.error {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+}
+
+.error p {
+    color: red;
+}
+
+.registry-form {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.registry-form .registry-button {
+    text-align: right;
+}

@@ -1,0 +1,19 @@
+input[type=text], input[type=date], textarea {
+    width: 50%;
+    margin-bottom: 30px;
+    margin-left: 100px;
+}
+
+.author-filter, .tag-filter {
+    float: left;
+    margin-right: 15px;
+}
+
+form > label {
+    position: absolute;
+    z-index: -1;
+}
+
+.error p {
+    color: red;
+}

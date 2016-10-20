@@ -1,0 +1,28 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="template" template="/WEB-INF/views/template.jsp"> <!-- Общий шаблон -->
+        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+    </definition>
+    <definition name="main" extends="template">  <!-- Шаблон главной страницы -->
+        <put-attribute name="content" value="/WEB-INF/views/newsList.jsp" />
+    </definition>
+    <definition name="addUpdateArticle" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/addUpdateArticle.jsp" />
+    </definition>
+    <definition name="addUpdateAuthor" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/addUpdateAuthor.jsp" />
+    </definition>
+    <definition name="addTag" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/addUpdateTag.jsp" />
+    </definition>
+    <definition name="loginPage" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+    </definition>
+    <definition name="articlePage" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/newsPage.jsp"/>
+    </definition>
+</tiles-definitions>

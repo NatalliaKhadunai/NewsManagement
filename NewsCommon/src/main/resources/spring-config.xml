@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+        <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+        <property name="username" value="hr" />
+        <property name="password" value="hr" />
+        <property name="removeAbandoned" value="true"/>
+        <property name="initialSize" value="10" />
+        <property name="maxActive" value="10" />
+        <property name="maxIdle" value="10" />
+        <property name="maxWait" value="10" />
+    </bean>
+
+    <bean id="accountDAO" class="com.epam.newsmanagement.dao.impl.AccountDAOImpl" autowire="byName"></bean>
+    <bean id="articleDAO" class="com.epam.newsmanagement.dao.impl.ArticleDAOImpl" autowire="byName"></bean>
+    <bean id="authorDAO" class="com.epam.newsmanagement.dao.impl.AuthorDAOImpl" autowire="byName"></bean>
+    <bean id="commentDAO" class="com.epam.newsmanagement.dao.impl.CommentDAOImpl" autowire="byName"></bean>
+    <bean id="tagDAO" class="com.epam.newsmanagement.dao.impl.TagDAOImpl" autowire="byName"></bean>
+    <bean id="articleTagDAO" class="com.epam.newsmanagement.dao.impl.ArticleTagDAOImpl" autowire="byName"></bean>
+    <bean id="articleAuthorDAO" class="com.epam.newsmanagement.dao.impl.ArticleAuthorDAOImpl" autowire="byName"></bean>
+
+    <bean id="tagService" class="com.epam.newsmanagement.service.impl.TagServiceImpl" autowire="byName"></bean>
+    <bean id="articleService" class="com.epam.newsmanagement.service.impl.ArticleServiceImpl" autowire="byName"></bean>
+    <bean id="authorService" class="com.epam.newsmanagement.service.impl.AuthorServiceImpl" autowire="byName"></bean>
+    <bean id="commentService" class="com.epam.newsmanagement.service.impl.CommentServiceImpl" autowire="byName"/>
+    <bean id="accountService" class="com.epam.newsmanagement.service.impl.AccountServiceImpl" autowire="byName"/>
+
+    <bean id="roleManager" class="com.epam.newsmanagement.manager.RoleManager"></bean>
+</beans>

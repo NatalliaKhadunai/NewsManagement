@@ -1,0 +1,13 @@
+.tag-filter {
+    width: 150px;
+}
+.selectBox select {
+    width: 100%;
+}
+.tag-filter-checkboxes {
+    display: none;
+    border: 1px solid black;
+}
+.tag-filter-checkboxes label {
+    display: block;
+}

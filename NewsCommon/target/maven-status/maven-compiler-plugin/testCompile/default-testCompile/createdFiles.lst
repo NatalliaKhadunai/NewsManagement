@@ -1,0 +1,13 @@
+com\epam\newsmanagement\service\TagServiceImplTest$1.class
+com\epam\newsmanagement\service\ArticleServiceImplTest$1.class
+com\epam\newsmanagement\service\AuthorServiceImplTest.class
+com\epam\newsmanagement\service\TagServiceImplTest.class
+com\epam\newsmanagement\dao\AccountDAOTest.class
+com\epam\newsmanagement\dao\ArticleTagDAOTest.class
+com\epam\newsmanagement\dao\TagDAOTest.class
+com\epam\newsmanagement\service\ArticleServiceImplTest.class
+com\epam\newsmanagement\service\CommentServiceImplTest.class
+com\epam\newsmanagement\service\AccountServiceImplTest.class
+com\epam\newsmanagement\dao\ArticleDAOTest.class
+com\epam\newsmanagement\dao\AuthorDAOTest.class
+com\epam\newsmanagement\dao\CommentDAOTest.class
