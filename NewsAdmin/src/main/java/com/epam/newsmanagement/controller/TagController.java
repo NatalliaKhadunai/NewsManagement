@@ -24,8 +24,6 @@ public class TagController {
     @RequestMapping(value = "/addTag", method = RequestMethod.GET)
     public String addTagPage(ModelMap model) {
         List<Tag> tagList = tagService.listTags();
-        model.addAttribute("tagToAdd", new Tag());
-        model.addAttribute("tagToUpdate", new Tag());
         model.addAttribute("tagList", tagList);
         return "addTag";
     }
@@ -39,8 +37,10 @@ public class TagController {
     }
 
     @RequestMapping (value = "/updateTag", method = RequestMethod.POST)
-    public String updateTag(@RequestParam(value = "tagId", required = true) String tagId) {
+    public String updateTag(@RequestParam(value = "tagId", required = true) String tagId,
+                            @RequestParam(value = "tagName", required = true) String tagName) {
         Tag tag = tagService.getTag(Integer.parseInt(tagId));
+        tag.setName(tagName);
         tagService.updateTag(tag);
         return "redirect:/NewsAdmin/main";
     }

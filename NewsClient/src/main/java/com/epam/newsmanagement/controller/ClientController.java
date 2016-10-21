@@ -4,8 +4,10 @@ import com.epam.newsmanagement.command.Command;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,14 @@ import java.io.IOException;
 
 public class ClientController extends HttpServlet {
     public static final int RECORD_PER_PAGE = 3;
-    private ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-client-config.xml");
+    private WebApplicationContext webApplicationContext;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init();
+        ServletContext servletContext = config.getServletContext();
+        webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +45,7 @@ public class ClientController extends HttpServlet {
             String beanName;
             if (request != null) beanName = request + "Command";
             else beanName = "emptyCommand";
-            Command command = (Command) applicationContext.getBean(beanName);
+            Command command = (Command) webApplicationContext.getBean(beanName);
             command.execute(req, resp);
         }
     }

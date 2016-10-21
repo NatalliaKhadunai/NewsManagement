@@ -11,18 +11,16 @@
 <spring:url value="resources/js/AddUpdateNews.js" var="addUpdateNewsJS"/>
 <script src="${addUpdateNewsJS}"></script>
 <div class="content-container">
-    <form:form id="addNewsForm" action="/NewsAdmin/addArticle" method="post" commandName="article">
-        <form:label path="mainTitle"><spring:message code="label.mainTitle"/> :</form:label>
-        <form:input path="mainTitle" id="mainTitle"/>
+    <form id="addNewsForm" action="/NewsAdmin/${action}Article" method="post">
+        <input type="hidden" name="articleId" value="${article.id}">
+        <label for="mainTitle"><spring:message code="label.mainTitle"/> :</label>
+        <input name="mainTitle" id="mainTitle" value="${article.mainTitle}"/>
         <br>
-        <form:label path="shortTitle"><spring:message code="label.shortTitle"/> :</form:label>
-        <form:input path="shortTitle" id="shortTitle"/>
+        <label for="shortTitle"><spring:message code="label.shortTitle"/> :</label>
+        <input name="shortTitle" id="shortTitle" value="${article.shortTitle}"/>
         <br>
-        <form:label path="publishDate"><spring:message code="label.date"/> :</form:label>
-        <form:input path="publishDate" id="date" max=""/>
-        <br>
-        <form:label path="content"><spring:message code="label.content"/> :</form:label>
-        <form:input path="content" id="content"/>
+        <label for="content"><spring:message code="label.content"/> :</label>
+        <textarea name="content" id="content">${article.content}</textarea>
         <br>
         <select class="author-filter" name="authorFilter" multiple>
             <option disabled>Select an author</option>
@@ -48,7 +46,7 @@
         </div>
         <br>
         <input type="submit" value="Save">
-    </form:form>
+    </form>
     <div id="error" class="error">
 
     </div>

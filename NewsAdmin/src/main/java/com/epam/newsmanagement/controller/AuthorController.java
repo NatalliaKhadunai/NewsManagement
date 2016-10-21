@@ -25,8 +25,6 @@ public class AuthorController {
     @RequestMapping(value = "/addAuthor", method = RequestMethod.GET)
     public String addAuthorPage(ModelMap model) {
         List<Author> authorList = authorService.listAuthorsNotExpired();
-        model.addAttribute("authorToAdd", new Author());
-        model.addAttribute("authorToUpdate", new Author());
         model.addAttribute("authorList", authorList);
         return "addUpdateAuthor";
     }
@@ -39,31 +37,27 @@ public class AuthorController {
         while (matcher.find()) {
             resList.add(matcher.group());
         }
-        String first_name = resList.get(0);
-        String last_name = resList.get(1);
         Author author = new Author();
-        author.setFirst_name(first_name);
-        author.setLast_name(last_name);
+        author.setFirst_name(resList.get(0));
+        author.setLast_name(resList.get(1));
         authorService.create(author);
         return "redirect:/NewsAdmin/main";
     }
 
     @RequestMapping (value = "/updateAuthor", method = RequestMethod.POST)
-    public String updateAuthor(@RequestParam(value = "authorId", required = true)String authorId) {
+    public String updateAuthor(@RequestParam(value = "authorId", required = true)String authorId,
+                               @RequestParam(value = "authorName", required = true)String authorName) {
         Author author = authorService.getAuthor(Integer.parseInt(authorId));
+        List<String> resList = new ArrayList<>();
+        Pattern pattern = Pattern.compile("\\w+");
+        Matcher matcher = pattern.matcher(authorName);
+        while (matcher.find()) {
+            resList.add(matcher.group());
+        }
+        author.setFirst_name(resList.get(0));
+        author.setLast_name(resList.get(1));
         authorService.update(author);
         return "redirect:/NewsAdmin/main";
-    }
-
-    @RequestMapping (value = "/getAuthor", method = RequestMethod.GET, produces="application/json")
-    @ResponseBody
-    public String getAuthor(
-            @RequestParam(value = "authorId", required = true) String authorId) {
-        Author author = authorService.getAuthor(Integer.parseInt(authorId));
-        JsonObject obj = new JsonObject();
-        obj.addProperty("firstName", author.getFirst_name());
-        obj.addProperty("lastName", author.getLast_name());
-        return obj.toString();
     }
 
     @RequestMapping (value = "/expireAuthor", method = RequestMethod.POST)

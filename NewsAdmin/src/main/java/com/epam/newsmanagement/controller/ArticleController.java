@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
 
@@ -32,20 +34,27 @@ public class ArticleController {
 
     @RequestMapping(value = "/addArticle", method = RequestMethod.GET)
     public String addArticlePage(ModelMap model) {
-        model.addAttribute("article", new Article());
         List<Author> authorList = authorService.listAuthorsNotExpired();
         List<Tag> tagList = tagService.listTags();
         model.addAttribute("authorList", authorList);
         model.addAttribute("tagList", tagList);
+        model.addAttribute("action", "add");
         return "addUpdateArticle";
     }
 
     @RequestMapping (value = "/addArticle", method = RequestMethod.POST)
-    public String addArticle(@ModelAttribute("article")Article article,
-                           @RequestParam(value = "authorList", required = true) String[] authorList,
-                           @RequestParam (value = "tagFilter", required = false) String[] tagList,
-                           HttpServletResponse response,
-                           ModelMap model) {
+    public String addArticle(@RequestParam (value = "mainTitle", required = false) String mainTitle,
+                             @RequestParam (value = "shortTitle", required = false) String shortTitle,
+                             @RequestParam (value = "content", required = false) String content,
+                           @RequestParam(value = "authorFilter", required = true) String[] authorList,
+                           @RequestParam (value = "tagFilter", required = false) String[] tagList) {
+        Article article = new Article();
+        article.setMainTitle(mainTitle);
+        article.setShortTitle(shortTitle);
+        article.setContent(content);
+        Date date = new Date();
+        Timestamp currTimestamp = new Timestamp(date.getTime());
+        article.setPublishDate(currTimestamp);
         article.setAuthorSet(new HashSet<Author>());
         for (String str : authorList) {
             int authorId = Integer.parseInt(str);
@@ -77,13 +86,21 @@ public class ArticleController {
         }
         model.addAttribute("authorList", authorList);
         model.addAttribute("tagList", tagList);
+        model.addAttribute("action", "edit");
         return "addUpdateArticle";
     }
 
     @RequestMapping (value = "/editArticle", method = RequestMethod.POST)
-    public String editArticle(@ModelAttribute("article")Article article,
-                              @RequestParam (value = "authorList", required = false) String[] authorIdArray,
-                              @RequestParam (value = "tagList", required = false) String[] tagIdArray) {
+    public String editArticle(@RequestParam (value = "articleId", required = true) String articleIdStr,
+                              @RequestParam (value = "mainTitle", required = false) String mainTitle,
+                              @RequestParam (value = "shortTitle", required = false) String shortTitle,
+                              @RequestParam (value = "content", required = false) String content,
+                              @RequestParam (value = "authorFilter", required = false) String[] authorIdArray,
+                              @RequestParam (value = "tagFilter", required = false) String[] tagIdArray) {
+        Article article = articleService.getArticle(Integer.parseInt(articleIdStr));
+        article.setMainTitle(mainTitle);
+        article.setShortTitle(shortTitle);
+        article.setContent(content);
         if (authorIdArray != null) {
             for (String str : authorIdArray) {
                 int authorId = Integer.parseInt(str);
@@ -103,8 +120,7 @@ public class ArticleController {
     }
 
     @RequestMapping (value = "/deleteArticle", method = RequestMethod.POST)
-    public String deleteArticle(@RequestParam(value = "articleIds", required = true) String[] articleIdArray,
-                                ModelMap model) {
+    public String deleteArticle(@RequestParam(value = "articleIds", required = true) String[] articleIdArray) {
         for (String articleIdStr : articleIdArray) {
             Article article = articleService.getArticle(Integer.parseInt(articleIdStr));
             articleService.deleteArticle(article);

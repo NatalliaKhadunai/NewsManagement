@@ -32,7 +32,7 @@ public class AddCommentCommand implements Command {
         Date date = new Date();
         Timestamp currTimestamp = new Timestamp(date.getTime());
         HttpSession session = req.getSession(false);
-        String login = ((Account) session.getAttribute("loggedUser")).getLogin();
+        String login = ((Account) session.getAttribute("loggedUser")).getUsername();
         Account account = accountService.getAccount(login);
         Comment comment = new Comment(articleId, account.getId(), currTimestamp, content);
         commentService.addComment(comment);

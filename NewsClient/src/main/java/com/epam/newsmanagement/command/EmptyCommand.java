@@ -64,13 +64,13 @@ public class EmptyCommand implements Command {
         else if (request.equals("resetFilter")) filter = null;
         List<Author> authorList = authorService.listAuthors();
         List<Tag> tagList = tagService.listTags();
-        req.setAttribute("newsList", articleList);
+        req.setAttribute("articleList", articleList);
         req.setAttribute("authorList", authorList);
         req.setAttribute("tagList", tagList);
         req.setAttribute("maxPageNo", maxPageNo);
         try {
             if (request != null && request.equals("resetFilter")) resp.sendRedirect("/NewsClient/ClientController");
-            else req.getRequestDispatcher("/NewsList.jsp").forward(req, resp);
+            else req.getRequestDispatcher("newsList").forward(req, resp);
         }
         catch (IOException | ServletException e) {
             logger.error(e);

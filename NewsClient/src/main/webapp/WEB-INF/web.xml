@@ -4,6 +4,16 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring-client-config.xml
+        </param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>ClientController</servlet-name>
         <servlet-class>com.epam.newsmanagement.controller.ClientController</servlet-class>

@@ -27,17 +27,20 @@ public class LoginCommand implements Command {
         String login = req.getParameter("login");
         int password = countPasswordHash(req.getParameter("password"));
         Account account = accountService.getAccount(login);
-        if (account.getPassword() != password) throw new WrongLoginOrPasswordException("Wrong password or login!");
-        else {
-            HttpSession session = req.getSession();
-            session.setAttribute("loggedUser", account);
-            try {
-                resp.sendRedirect("/NewsClient/ClientController");
-            }
-            catch (IOException e) {
-                logger.error(e);
+        if (account != null) {
+            if (account.getPassword() != password)
+                throw new WrongLoginOrPasswordException("Wrong password or login!");
+            else {
+                HttpSession session = req.getSession();
+                session.setAttribute("loggedUser", account);
+                try {
+                    resp.sendRedirect("/NewsClient/ClientController");
+                } catch (IOException e) {
+                    logger.error(e);
+                }
             }
         }
+        else throw new WrongLoginOrPasswordException("Wrong password or login!");
     }
 
     private int countPasswordHash(String passwordStr) {
